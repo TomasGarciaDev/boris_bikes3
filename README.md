@@ -15,5 +15,5 @@ we have to recreate a program that emulates the Santander Bikes structure:
 | :-------------:|:-------------------------: |
 | Person         |                            |
 | Bike           | working?                   |
-| DockingStation | release bike               |
+| DockingStation | release_bike               |
  
