@@ -2,8 +2,8 @@ require "dockingstation"
 
 describe DockingStation do
   it "releases bike" do
-    docking_station = DockingStation.new
-    expect(docking_station).to respond_to(:release_bike)
+    station = DockingStation.new
+    expect(station).to respond_to(:release_bike)
   end
 
   it 'should create a new instance of bike' do
@@ -14,4 +14,10 @@ describe DockingStation do
     bike = Bike.new
     expect(bike).to respond_to(:working?)
   end
+
+  it "docks a bike" do
+    station = DockingStation.new
+    # bike = Bike.new
+    expect(station).to respond_to(:dock).with(1).argument
+  end 
 end
