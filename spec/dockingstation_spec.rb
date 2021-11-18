@@ -41,4 +41,11 @@ describe DockingStation do
     DockingStation::DEFAULT_CAPACITY.times { subject.dock Bike.new }
     expect { subject.dock Bike.new }.to raise_error("Station full")
   end
+
+  it "Should raise an error when there are more than one arguments for initialize" do
+    expect {subject(1,2)}.to raise_error(ArgumentError)
+  end
+
+  it { expect(DockingStation).to respond_to(:new).with(1).argument }
+
 end
