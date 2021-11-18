@@ -15,3 +15,5 @@ class DockingStation
     @bike
   end
 end
+
+#hello, hello!
