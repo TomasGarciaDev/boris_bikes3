@@ -6,7 +6,7 @@ describe DockingStation do
   it 'relseases working bike' do
     subject.dock(Bike.new)
     # bike = subject.release_bike
-    expect(subject.release_bike).to be_working
+    expect(subject.release_bike.broken?).to be_falsey
   end
 
   it { is_expected.to respond_to(:dock).with(1).argument }
@@ -48,4 +48,19 @@ describe DockingStation do
 
   it { expect(DockingStation).to respond_to(:new).with(1).argument }
 
+  it "should have a default capacity of 20 when no armgument is given" do
+    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+  end
+
+  # it "should issue a report when broken bike docked" do
+  #   bike = Bike.new(false)
+  #   expect(subject.dock(bike)).to eq "Broken bike docked. Reported issues."
+  # end
+
+  it "shouldn't release a bike if broken" do
+    bike = Bike.new
+    bike.report_broken
+    subject.dock(bike)
+    expect { subject.release_bike }.to raise_error "Can not release broken bike"
+  end
 end
