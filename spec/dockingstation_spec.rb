@@ -1,12 +1,16 @@
 require "dockingstation"
 
 describe DockingStation do
+
+  let(:bike) { double("bike", broken?: false) }  
+  # bike = instance_double("bike", :broken? => false)
+
   it { is_expected.to respond_to :release_bike } 
   
   it 'relseases working bike' do
     # bike = double("bike")
+    subject.dock(bike) #BIKE
     # allow(bike).to receive(:broken?) {false}
-    subject.dock(double :bike) #BIKE
     expect(subject.release_bike.broken?).to be_falsey #BIKE
   end
 
@@ -17,16 +21,14 @@ describe DockingStation do
   
 
   it 'docks something' do
-    # bike = double("bike")
+
     station = DockingStation.new
     first_state = station.bikes.length
-    station.dock(double :bike) #BIKE
+    station.dock(bike) #BIKE
     expect(station.bikes.length).to eq first_state + 1
   end
  
   it 'returns docked bikes' do
-    bike = double :bike
-    # bike = Bike.new #BIKE
     subject.dock(bike)
     expect(subject.bikes).to eq Array.new.push(bike)
   end
@@ -36,9 +38,8 @@ describe DockingStation do
   end
 
   it "raised an error if there are over 20 bikes" do
-    # bike = double("bike")
-    DockingStation::DEFAULT_CAPACITY.times { subject.dock double :bike } #BIKE
-    expect { subject.dock :bike }.to raise_error("Station full") #BIKE
+    DockingStation::DEFAULT_CAPACITY.times { subject.dock bike } #BIKE
+    expect { subject.dock bike }.to raise_error("Station full") #BIKE
   end
 
   it "Should raise an error when there are more than one arguments for initialize" do
@@ -52,10 +53,9 @@ describe DockingStation do
   end
 
   it "shouldn't release a bike if broken" do
-    # bike = double("bike")
-    # bike = Bike.new #BIKE
-    bike.report_broken
-    subject.dock(double :bike)
+    # allow(bike).to receive(:broken?) {true}
+    bike2 = double(:bike, broken?: true)
+    subject.dock(bike2)
     expect { subject.release_bike }.to raise_error "Can not release broken bike"
   end
 end
