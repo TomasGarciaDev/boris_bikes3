@@ -1,7 +1,7 @@
 require "dockingstation"
 
 describe DockingStation do
-
+  
   let(:bike) { double("bike", broken?: false) }  
   # bike = instance_double("bike", :broken? => false)
 
