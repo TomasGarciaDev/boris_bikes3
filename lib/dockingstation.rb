@@ -21,6 +21,10 @@ class DockingStation
     @bikes << bike
   end
 
+  def after_pickup
+    @bikes.select! {|bike| bike.broken == false}
+  end
+
   private
 
   def full?

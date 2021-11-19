@@ -2,7 +2,7 @@ require "dockingstation"
 
 describe DockingStation do
   
-  let(:bike) { double("bike", broken?: false) }  
+  let(:bike) { double("bike", broken: false) }  
   # bike = instance_double("bike", :broken? => false)
 
   it { is_expected.to respond_to :release_bike } 
@@ -11,7 +11,7 @@ describe DockingStation do
     # bike = double("bike")
     subject.dock(bike) #BIKE
     # allow(bike).to receive(:broken?) {false}
-    expect(subject.release_bike.broken?).to be_falsey #BIKE
+    expect(subject.release_bike.broken).to be_falsey #BIKE
   end
 
   it { is_expected.to respond_to(:dock).with(1).argument }
@@ -54,7 +54,7 @@ describe DockingStation do
 
   it "shouldn't release a bike if broken" do
     # allow(bike).to receive(:broken?) {true}
-    bike2 = double(:bike, broken?: true)
+    bike2 = double(:bike, broken: true)
     subject.dock(bike2)
     expect { subject.release_bike }.to raise_error "Can not release broken bike"
   end

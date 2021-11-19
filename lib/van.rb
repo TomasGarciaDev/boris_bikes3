@@ -4,12 +4,8 @@ class Van
 
     def pickup(station)
       @van = station.bikes.select {|bike| bike.broken == true}
-    #   station.bikes.each do |bike| 
-    #     if bike.broken?
-    #       @van.push(bike.broken?)
-    #     end
-    #   end  
-    @van                  
+      station.after_pickup
+      @van                  
     end
 
     def dropoff
@@ -17,13 +13,13 @@ class Van
 
 end
 
-van = Van.new
-station = DockingStation.new
-bike = Bike.new
-bike_broken = Bike.new(true)
-station.dock(bike)
-station.dock(bike_broken)
-puts van.pickup(station)
+# van = Van.new
+# station = DockingStation.new
+# bike = Bike.new
+# bike_broken = Bike.new(true)
+# station.dock(bike)
+# station.dock(bike_broken)
+# puts van.pickup(station)
 
 #What do we want van to do
 #Two things

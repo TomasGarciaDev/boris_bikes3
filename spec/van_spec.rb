@@ -29,4 +29,16 @@ describe Van do
       station.dock(bike_broken)
       expect(subject.pickup(station)).to match_array(Array.new << bike_broken)
     end
+
+    it "broken bikes are removed from station after pickup" do
+      station = DockingStation.new
+      bike_broken = Bike.new(true)
+      station.dock(bike_broken)
+      before = station.bikes.length
+      subject.pickup(station)
+      after = station.bikes.length
+      expect(before).not_to eq(after)
+      #pick up broken
+      #we expect the "length" to be different nowbi
+    end
 end
